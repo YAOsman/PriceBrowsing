@@ -17,6 +17,7 @@ public class AddProductActivity extends AppCompatActivity {
         productDB = new ProductDBHelper(this,null, null, 1);
     }
 
+    //Save button handler, inserts new product into DB and returns to main activity with OK result
     public void save(View view)
     {
         EditText productName = (EditText) findViewById(R.id.productNameTxt);
@@ -29,6 +30,7 @@ public class AddProductActivity extends AppCompatActivity {
         finish();
     }
 
+    //Cancel button handler, does nothing and returns to main activity with CANCELED result
     public void cancel(View v)
     {
         setResult(RESULT_CANCELED,browseProductsIntent);

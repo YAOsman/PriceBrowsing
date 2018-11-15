@@ -38,6 +38,9 @@ public class BrowseProductsActivity extends AppCompatActivity {
         allProducts = new ArrayList<Product>();
         allProducts =productDB.getAllProducts();
         global_count=allProducts.size();
+
+        //Load UI with first product, adjust UI according to number of products ( if there are any)
+
         if(global_count>0)
         {
             displayProducts(allProducts.get(global_index));
@@ -54,6 +57,7 @@ public class BrowseProductsActivity extends AppCompatActivity {
         }
     }
 
+    //Enabling the options menu for add product
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
@@ -61,6 +65,8 @@ public class BrowseProductsActivity extends AppCompatActivity {
         inflater.inflate(R.menu.product_menu,menu);
         return true;
     }
+
+    //Handling add product option
     @Override
     public boolean onOptionsItemSelected(MenuItem menuItem)
     {
@@ -72,6 +78,7 @@ public class BrowseProductsActivity extends AppCompatActivity {
         return true;
     }
 
+    //Reloading list of products when a new product is added
     public void onActivityResult(int reqCode, int resCode, Intent result)
     {
         super.onActivityResult(reqCode,resCode,result);
@@ -93,6 +100,7 @@ public class BrowseProductsActivity extends AppCompatActivity {
         }
     }
 
+    //Next button handler, always re-enables previous button when clicked, and is disabled if it's the last product
     public void getNext(View v) throws IOException
     {
 
@@ -112,6 +120,7 @@ public class BrowseProductsActivity extends AppCompatActivity {
         }
     }
 
+    //Previous button handler, always re-enables next button when clicked, and is disabled if it's the last product
     public void getPrevious(View v)
     {
         if(global_count!=0 && global_index-1>-1)
@@ -129,6 +138,7 @@ public class BrowseProductsActivity extends AppCompatActivity {
         }
     }
 
+    //Delete button handler, adjust UI according to deletion
     public void deleteProduct(View v)
     {
         TextView name = (TextView) findViewById(R.id.nameTxt);
@@ -160,6 +170,7 @@ public class BrowseProductsActivity extends AppCompatActivity {
         }
     }
 
+    //Async task to convert the current product's price to bitcoin via webservice
     public class convertToBitcoin extends AsyncTask<String,Void,String>
     {
         String result = "";
@@ -195,6 +206,7 @@ public class BrowseProductsActivity extends AppCompatActivity {
         }
     }
 
+    //Wrapper function to display products in their respective fields
     public void displayProducts(Product product)
     {
         TextView name = (TextView) findViewById(R.id.nameTxt);

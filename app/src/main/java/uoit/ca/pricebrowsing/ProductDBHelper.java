@@ -27,7 +27,7 @@ public class ProductDBHelper extends SQLiteOpenHelper {
 
     }
 
-
+    //Creating DB
     @Override
     public void onCreate(SQLiteDatabase db) {
         String createTable = "CREATE TABLE " + TABLE_NAME + "(" +
@@ -47,6 +47,7 @@ public class ProductDBHelper extends SQLiteOpenHelper {
         this.onCreate(db);
     }
 
+    //Adding new record, takes a product as parameter
     public void addRecord(Product product){
 
         ContentValues values= new ContentValues();
@@ -59,7 +60,7 @@ public class ProductDBHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-
+    //Deleting record, takes name of product as parameter
     public void deleteRecord(String nameInput){
 
         SQLiteDatabase db = getWritableDatabase();
@@ -67,6 +68,7 @@ public class ProductDBHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+    //Selects all products from DB and puts them into an ArrayList and returns it
     public List<Product> getAllProducts(){
         String result="";
         List<Product> products = new ArrayList<Product>();
